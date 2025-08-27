@@ -1,6 +1,6 @@
 [build]
   publish = "frontend/dist"
-  command = "cd frontend && npm run build"
+  command = "cd frontend && npm install && npm run build"
 
 [functions]
   directory = "backend/functions"
@@ -8,6 +8,12 @@
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+# SPA redirect for React Router (must be last)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
 
 [[headers]]
