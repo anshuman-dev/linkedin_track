@@ -66,10 +66,10 @@ export const handler = async (event, context) => {
       }
     });
 
-    // Send OTP email
+    // Send OTP email  
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to configured email
+      to: email, // Send to the login email address
       subject: 'LinkedIn Tracker - Login OTP',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -92,7 +92,7 @@ export const handler = async (event, context) => {
       headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ 
         success: true, 
-        message: `OTP sent to ${process.env.EMAIL_USER}` 
+        message: `OTP sent to ${email}` 
       })
     };
 
