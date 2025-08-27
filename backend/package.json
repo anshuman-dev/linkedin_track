@@ -1,0 +1,21 @@
+{
+  "name": "linkedin-tracker-backend",
+  "version": "1.0.0",
+  "description": "LinkedIn tracking system backend functions",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Backend build complete'",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.4",
+    "crypto": "^1.0.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^16.1.0"
+  }
+}
