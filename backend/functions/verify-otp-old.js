@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 // Simple in-memory storage for OTP (shared with send-otp)
 const otpStore = new Map();
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -95,7 +95,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 500,
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: `Internal server error: ${error.message}` })
+      body: JSON.stringify({ error: 'Internal server error' })
     };
   }
 };

@@ -1,16 +1,16 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Simple in-memory storage for OTP (in production, use Redis or database)
 const otpStore = new Map();
 
-// Admin emails
+// Admin emails - you can expand this list
 const ADMIN_EMAILS = ['mailsinghanshuman@gmail.com'];
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
 }
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -66,7 +66,7 @@ exports.handler = async (event, context) => {
       }
     });
 
-    // Send OTP email
+    // Send OTP email  
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email, // Send to the login email address
@@ -74,7 +74,7 @@ exports.handler = async (event, context) => {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #333;">LinkedIn Tracker Login</h2>
-          <p>Hello! Here is your login verification code:</p>
+          <p>Hello! Someone is trying to login to LinkedIn Tracker with email: <strong>${email}</strong></p>
           <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
             <h1 style="font-size: 48px; margin: 0; color: #0066cc; letter-spacing: 8px;">${otp}</h1>
             <p style="margin: 10px 0 0 0; color: #666;">Your 6-digit verification code</p>
@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 500,
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: `Failed to send OTP: ${error.message}` })
+      body: JSON.stringify({ error: 'Failed to send OTP' })
     };
   }
 };
