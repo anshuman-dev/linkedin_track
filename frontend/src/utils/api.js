@@ -43,14 +43,14 @@ const request = async (endpoint, options = {}) => {
 
 export const api = {
   auth: {
-    login: (email) => request('/auth-login', {
+    sendOTP: (email) => request('/send-otp', {
       method: 'POST',
       body: { email },
     }),
 
-    verify: (token) => request('/auth-verify', {
+    verifyOTP: (email, otp) => request('/verify-otp', {
       method: 'POST',
-      body: { token },
+      body: { email, otp },
     }),
   },
 
